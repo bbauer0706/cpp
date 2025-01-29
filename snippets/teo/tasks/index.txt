@@ -1,0 +1,67 @@
+Tasks
+
+0x01: Basic structures
+Eingabe/Einlesen und Ausgabe
+Fibonacci-Folge
+Potenz
+Arrays
+Primzahlen
+
+0x02: References, structs, auto, exceptions
+ReferenzCutShift
+Polynom - Struktur
+Stack
+
+0x03: Class, ctor, dtor, member
+Bruch-Fraction
+PunktXY
+Kontakt
+Polynom - Klasse
+
+0x04: Templates (Generics)
+ContainerLauf - Datencontainer ’range-based-for’ durchlaufen und ’auto’ verwenden (vector)
+ContainerLaufExtended
+Search-Delete - Suchen und löschen in Datencontainern mit Iteratoren
+ISBN - mapping
+TemplateToClass1
+TemplateToClass2
+
+0x05: Asm, Pointers
+VarMod - Variablen über Zeiger modifizieren
+Swap
+Illegal
+
+0x06: Dynamic memory allocation (Heap), new, delete, const
+C-String
+Pointer-Array
+New-Array-CString
+New-dynStruct-sPointer1 (new, dynamischen Strukturen, smart pointer)
+New-dynStruct-sPointer2
+
+0x07: Operations, friend
+States
+FastVector
+Nullable
+
+0x08: Inheritance
+Inheritance
+AbstractClass
+MehrfachInheritance
+
+0x09: template specialisation, smart ptr.
+TemplateSpecialisation
+Unique-shared-ptr
+Metaprogramming
+Weak-shared-ptr
+
+0x10: Lambdas, Algorithms, Code Organisation
+Lambda
+FuncPtr
+FuncPtr-Lambda
+Algo
+FileIO
+
+0x11: Threads, Mutex, Futures
+StartingTwoThreads
+ThreadSafeSum
+WaitSignal
