@@ -1,0 +1,68 @@
+Inhaltsverzeichnis
+
+0x01 Comprehension Check
+    1. Basic C++ Program Structure  
+    2. Variables and Data Types
+    3. Input/Output
+    4. Control Structures (If-Else, While Loop, Do-While Loop, For-Loop)
+    5. Functions
+    6. Namespaces
+
+0x02 Comprehension Check
+    1. Referenzen (References)
+    2. Call-by-Value vs. Call-by-Reference
+    3. Throw and Catch Exceptions
+    4. Auto in C++
+
+0x03 Comprehension Check
+    1. Unterschied zwischen struct und class
+    2. Wie man eine Klasse definiert
+    3. Konstruktoren, Destruktoren, Getter und Setter
+    4. Bedeutung von const in Memberfunktionen
+    5. Kopierkonstruktor
+    6. Eigenen Operator << für die Ausgabe definieren
+
+0x04 Comprehension Check
+    1. Generische Klassen (Templates) in C++
+    2. Arbeiten mit Datencontainern (z. B. std::vector, std::unordered_map)
+    3. Iteratoren
+
+0x05 Comprehension Check
+    1. Zeiger - Adressenspeicherung
+    2. Call-By-Reference (Zeiger vs Reference)
+    3. Spezielle Ausdrücke wie nullptr und void*
+    4. Felder und Indexzugriff mit Zeigern
+
+0x06 Comprehension Check
+    1. C-Strings
+    2. Unterschied zwischen delete und delete[]
+    3. Vor- und Nachteile von Zeigern
+    4. Konstante Zeiger vs. Zeiger auf Konstanten
+    5. Verwendung von Smart Pointern statt Raw Pointern
+
+0x07 Comprehension Check
+    1. Operator Overloading (Operatorüberladung)
+    2. Operatoren: Member oder Freundsfunktion
+    3. Designregeln für das Überladen von Operatoren
+    4. friend-Schlüsselwort
+    5. Bedeutung von static
+
+0x08 Comprehension Check
+    1. virtual und der Unterschied zu Java
+    2. Nichtexistene Interfaces in C++
+    3. Abstrakte Klassen
+    4. Mehrfachvererbung in C++
+
+0x09 Comprehension Check
+    1. Template-Spezialisierung in C++
+
+0x0a Comprehension Check
+    1. Lambdas in C++
+    2. Die Bedeutung von [] in Lambdas
+    3. Funktionen als Parameter
+    4. Funktionszeiger
+    5. std::function
+
+0x0b Comprehension Check
+    1. Threads in C++
+    2. Mutex (Mutual Exclusion) und Locks in C++

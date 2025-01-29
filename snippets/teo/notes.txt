@@ -1,0 +1,911 @@
+0x01 Comprehension Check:
+
+Ich kenne unterschiedliche Datentypen und kann sie definieren, deklarieren, einlesen, verarbeiten und ausgeben.
+Ich bin mit den Kontrollstrukturen ’if-else’, ’do-while’, ’while’ und ’for’ vertraut.
+Ich weiß, wie man eine Funktion aufruft, sie definiert oder deklariert.
+Ich kenne den Namensraum ’std’.
+
+1. Basic C++ Program Structure
+    #include <iostream>  // Header for input/output
+    using namespace std; // To avoid using std:: prefix
+
+    int main() {
+        // Your code goes here
+        return 0;
+    }
+
+2. Variables and Data Types
+    int age{25};
+    float temperature{36.6};
+    char letter = 'A';
+    bool isActive = true;
+    string name = "John Doe";
+
+3. Input/Output
+    int x;
+    cout << "Enter a number: ";
+    cin >> x;
+    cout << "You entered: " << x << endl;
+
+4. Control Structures
+    If-Else
+        if (x > 10) {
+            cout << "x is greater than 10";
+        } else {
+            cout << "x is less than or equal to 10";
+        }
+
+    While Loop
+        int i = 0;
+        while (i < 5) {
+            cout << "i = " << i << endl;
+            i++;
+        }
+
+    Do-While Loop
+        int i = 0;
+        do {
+            cout << "i = " << i << endl;
+            i++;
+        } while (i < 5);
+
+    For-Loop
+        for (int i = 0; i < 5; i++) {
+            cout << "i = " << i << endl;
+        }
+
+5. Functions
+    Function Declaration/Definition
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    Function Call
+    int result = add(5, 3);
+    cout << result;
+
+6. Namespaces
+    using namespace std;
+
+0x02 Comprehension Check
+
+Ich weiß, was eine Referenz ist.
+Ich kenne den Unterschied zwischen 'call-by-value' und 'call-by-ref'.
+Ich kann Ausnahmen werfen und fangen.
+Ich kann auto anwenden.
+
+1. Referenzen (References)
+    Definiert mit &
+    Kann nicht auf nullptr/andere Variable verändert werden
+    int x = 5;
+    int &ref = x;  // ref ist eine Referenz auf x
+    ref = 10;  // x wird jetzt 10 sein
+
+2. Call-by-Value vs. Call-by-Reference
+    void foo(int x) {
+        x = 10;  // Nur x innerhalb der Funktion wird geändert, nicht die ursprüngliche Variable
+    }
+
+    void foo(int &x) {
+        x = 10;  // x wird die ursprüngliche Variable ändern
+    }
+
+3. Throw and Catch Exceptions
+    throw std::runtime_error("Ein Fehler ist aufgetreten!");
+
+    try {
+        throw std::runtime_error("Fehler!");
+    } catch (const std::exception &e) {
+        std::cout << "Gefangene Ausnahme: " << e.what() << std::endl;
+    }
+
+4. Auto in C++
+    auto x = 5;  // x ist vom Typ int
+    auto y = 3.14;  // y ist vom Typ double
+
+    std::vector<int> vec = {1, 2, 3};
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << std::endl;
+    }
+
+0x03 Comprehension Check
+
+Ich kenne den Unterschied zwischen ’struct’ und ’class’.
+Ich weiß, wie man eine Klasse definiert.
+Ich kann Konstruktoren, Destruktoren und ’getter’ und ’setter’ definieren.
+Ich kenne die Bedeutung von ’const’ im Zusammenhang mit Memberfunktionen.
+Ich weiß, wann ein Kopierkonstruktor aufgerufen und wie er verwendet wird.
+Ich kann einen eigen Operator << für meine Klasse schreiben.
+
+1. Unterschied zwischen struct und class
+    struct: Standardmäßig sind alle Mitglieder public
+    class: Standardmäßig sind alle Mitglieder private
+
+    struct Person {
+        std::string name;
+        int alter;
+    };
+
+    class Fahrzeug {
+    private:
+        int geschwindigkeit;
+    public:
+        void setGeschwindigkeit(int s) { geschwindigkeit = s; }
+        int getGeschwindigkeit() { return geschwindigkeit; }
+    };
+
+2. Wie man eine Klasse definiert
+    class Person {
+    private:
+        std::string name;
+        int alter;
+    public:
+        // Konstruktor
+        Person(std::string name, int alter) : name(name), alter(alter) {}
+
+        // Getter
+        std::string getName() const { return name; }
+
+        // Setter
+        void setName(const std::string& newName) { name = newName; }
+    };
+
+3. Konstruktoren, Destruktoren, Getter und Setter
+    Ctor: Person(std::string name, int alter) : name(name), alter(alter) {}
+    Dtor: ~Person() { //Irgend ne Nachricht schmeißen }
+    Getter: std::string getName() const { return name; }
+    Setter: void setName(const std::string& newName) { name = newName; }
+
+4. Bedeutung von const in Memberfunktionen
+    int getAlter() const { return alter; } // Methode verändert Zustand des Objekts nicht
+
+5. Kopierkonstruktor
+    Person(const Person& other) {
+        name = other.name;
+        alter = other.alter;
+    }
+
+6. Eigenen Operator << für die Ausgabe definieren
+    class Person {
+    public:
+        Person(std::string name, int alter) : name(name), alter(alter) {}
+        
+        // Überladung des '<<'-Operators
+        friend std::ostream& operator<<(std::ostream& os, const Person& p) {
+            os << "Name: " << p.name << ", Alter: " << p.alter;
+            return os;
+        }
+
+    private:
+        std::string name;
+        int alter;
+    };
+
+    int main() {
+        Person p("Max", 30);
+        std::cout << p << std::endl;  // Ausgabe: Name: Max, Alter: 30
+    }
+
+0x04 Comprehension Check
+
+Ich kann eine Klasse zu einer generischen Klasse, einem Template, erweitern (wenn es sinnvoll ist!).
+Ich kann Elemente aus Datencontainern lesen, suchen und verändern.
+Ich kann Iteratoren verwenden.
+
+1. Generische Klassen (Templates) in C++
+    template <typename T>
+    class Box {
+    private:
+        T value;
+    public:
+        Box(T v) : value(v) {}
+        T getValue() { return value; }
+        void setValue(T v) { value = v; }
+    };
+
+    int main() {
+        Box<int> intBox(10);
+        Box<std::string> strBox("Hello");
+        
+        std::cout << intBox.getValue() << std::endl;  // Ausgabe: 10
+        std::cout << strBox.getValue() << std::endl;  // Ausgabe: Hello
+    }
+
+    template <typename T, typename U>
+    class Pair {
+    private:
+        T first;
+        U second;
+    public:
+        Pair(T f, U s) : first(f), second(s) {}
+    };
+
+2. Arbeiten mit Datencontainern (z. B. std::vector, std::unordered_map)
+    Vector
+        Erstellen:
+            std::vector<int> vec;  // Leerer Vektor
+            std::vector<int> vec2 = {1, 2, 3, 4, 5};  // Vektor mit initialen Werten
+
+        Zugriff:
+            int first = vec2[0];  // Zugriff auf das erste Element
+            int second = vec2.at(1);  // Zugriff auf das zweite Element mit Bounds-Check
+
+        Hinzufügen:
+            vec.push_back(10);  // Fügt 10 am Ende des Vektors hinzu
+            vec.push_back(20);  // Fügt 20 hinzu
+            vec.insert(vec.begin() + 1, 15);  // Fügt 15 an der zweiten Stelle ein
+
+        Löschen:
+            vec.erase(vec.begin() + 1);  // Löscht das zweite Element
+            vec.pop_back();  // Entfernt das letzte Element
+
+        Größe:
+            std::cout << vec.size();  // Gibt die Anzahl der Elemente aus
+
+        Iterieren:
+            for (int val : vec) {
+                std::cout << val << " ";
+            }
+
+        push_back() – It is used to insert the elements at the end of the vector.
+        pop_back() – It is used to pop or remove elements from the end of the vector.
+        clear() – It is used to remove all the elements of the vector.
+        empty() – It is used to check if the vector is empty.
+        at(i) – It is used to access the element at the specified index ‘i’.
+        front() – It is used to access the first element of the vector.
+        back() – It is used to access the last element of the vector.
+        erase() – It is used to remove an element at a specified position.
+
+    Unordered_map
+        Erstellen:
+            std::unordered_map<std::string, int> map;
+            std::unordered_map<std::string, int> map2 = {{"Alice", 30}, {"Bob", 25}};
+
+        Zugriff:
+            int age = map["Alice"];  // Zugriff auf den Wert von "Alice"
+
+        Hinzufügen:
+            map["Alice"] = 30;  // Fügt "Alice" mit dem Wert 30 hinzu
+            map["Bob"] = 25;    // Fügt "Bob" mit dem Wert 25 hinzu
+
+        Löschen:
+            map.erase("Bob");  // Löscht den Eintrag mit dem Schlüssel "Bob"
+
+        Suchen:
+            if (map.find("Alice") != map.end()) {
+                std::cout << "Alice gefunden!" << std::endl;
+            }
+
+        Prüfen, ob Schlüssel exisitiert:
+        if (map.count("Alice") > 0) {
+            std::cout << "Alice existiert in der Map!" << std::endl;
+        }
+
+        Iterieren:
+            (using iterator = std::unordered_map<std::string, int>::iterator; 
+            or
+            typedef std::unordered_map<std::string, int>::iterator iterator;)
+
+            iterator it;
+
+            for (it = map.begin(); it != map.end(); ++it) {
+                std::cout << it->first << ": " << it->second << std::endl;  // Ausgabe: Alice: 30
+            }
+
+            for (const auto& pair : map) {
+                std::cout << pair.first << ": " << pair.second << std::endl;
+            }
+
+3. Iteratoren
+    begin(): Gibt einen Iterator auf das erste Element des Containers zurück.
+    end(): Gibt einen Iterator auf das Element nach dem letzten Element zurück (wird oft als "offenes Ende" bezeichnet).
+    ++it: Inkrementiert den Iterator, um zum nächsten Element zu gelangen.
+    *it: Dereferenziert den Iterator, um auf das Element zuzugreifen, auf das er zeigt.
+
+    Beispiel Vector
+        #include <vector>
+        #include <iostream>
+        #include <algorithm>
+
+        int main() {
+            std::vector<int> vec = {1, 2, 3, 4, 5};
+
+            std::vector<int>::iterator it;
+
+            auto f_it = std::find(vec.begin(), vec.end(), 2);
+
+            for (it = f_it; it != vec.end() || it != f_it + 3; ++it) {
+                std::cout << *it << " ";  // Ausgabe: 2 3 4
+            }
+            std::cout << std::endl;
+
+            return 0;
+        }
+
+0x05 Comprehension Check
+
+Ich weiß, was ein Zeiger ist.
+Ich kann Zeiger initialisieren, verwenden und mit ihnen rechnen.
+Ich kann sowohl Zeiger als auch Referenzen für ’call-by-reference’ verwenden.
+Ich kenne spezielle Ausdrücke wie ’nullptr’ oder ’void*’.
+Ich weiß, was Felder und Indexzugriffe mit Zeigern zu tun haben
+
+1. Zeiger - Adressenspeicherung
+    Initialisierung
+        int x = 10;
+        int *ptr_x = &x;  // ptr enthält die Adresse von x
+    
+    Deferenzierung
+        int y = *ptr; 
+    
+    Beispiel:
+        #include <iostream>
+        using namespace std;
+
+        int main() {
+            int a = 10;
+            int* ptr = &a;  // ptr zeigt auf a
+            cout << *ptr << endl;  // Dereferenzierung: gibt 10 aus
+            cout << ptr << endl;  // Gibt Adresse von a aus
+            return 0;
+        }
+
+2. Call-By-Reference (Zeiger vs Reference)
+    Zeiger:
+        void updateValue(int* ptr) {
+            *ptr = 100;  // Wert an der Adresse, auf die ptr zeigt, wird geändert
+        }
+
+        int main() {
+            int x = 10;
+            updateValue(&x);  // Übergabe der Adresse von x
+            cout << x;  // Ausgabe: 100
+        }
+    Reference:
+        void updateValue(int& ref) {
+            ref = 100;  // Wert wird direkt geändert
+        }
+
+        int main() {
+            int x = 10;
+            updateValue(x);  // Übergabe von x als Referenz
+            cout << x;  // Ausgabe: 100
+        }
+
+3. Spezielle Ausdrücke wie nullptr und void*
+    Nullptr:
+        int* ptr = nullptr;  // Zeiger ist auf nichts gesetzt
+        if (ptr == nullptr) {
+            cout << "ptr ist null!" << endl;
+        }
+
+    Voidptr:
+        void* ptr = &a;  // ptr zeigt auf eine beliebige Variable
+        int* int_ptr = static_cast<int*>(ptr);  // Umwandlung zu int*
+        cout << *int_ptr << endl;  // Dereferenzierung
+
+4. Felder und Indexzugriff mit Zeigern
+    Zugriff auf Array-Elemente:
+        int arr[] = {1, 2, 3, 4, 5};
+        int* ptr = arr;  // ptr zeigt auf das erste Element von arr
+
+        cout << *(ptr + 2);  // Zugriff auf das 3. Element von arr (Ausgabe: 3)
+
+    Beispiel:
+        #include <iostream>
+        using namespace std;
+
+        int main() {
+            int arr[] = {10, 20, 30, 40};
+            int* ptr = arr;  // ptr zeigt auf das erste Element von arr
+
+            cout << *ptr << endl;  // Gibt 10 aus
+            cout << *(ptr + 1) << endl;  // Gibt 20 aus
+            cout << *(ptr + 2) << endl;  // Gibt 30 aus
+
+            return 0;
+        }
+
+0x06 Comprehension Check
+
+Ich weiß was C-Strings sind.
+Ich kenne den Unterschied zwischen ’delete’ und ’delete[]’.
+Ich kann Vor- und Nachteile von Zeigern nennen.
+Ich kann konstante Zeiger von Zeigern auf Konstanten unterscheiden.
+Ich nutze ’smart pointer’ statt ’raw pointer’.
+
+1. C-Strings
+    - Arrays von Chars
+    - endet mit Nullzeichen '\0'
+
+    Beispiel:
+        char str[] = "Hello";  // C-String
+        cout << str << endl;   // Gibt "Hello" aus
+
+    Operationen:
+        strlen(str) – Länge der Zeichenkette (ohne Null-Terminierung)
+        strcpy(destination, source) – Kopieren einer C-String
+        strcmp(str1, str2) – Vergleichen von zwei C-Strings
+
+2. Unterschied zwischen delete und delete[]
+    delete: Wird verwendet, um einen einzelnen dynamisch zugewiesenen Speicherblock freizugeben.
+        Beispiel: delete ptr;
+
+    delete[]: Wird verwendet, um einen dynamisch zugewiesenen Array-Speicher freizugeben.
+        Beispiel: delete[] arr;
+
+    Wichtig: Beim Freigeben von Arrays muss delete[] verwendet werden, um die richtige Speicherfreigabe zu gewährleisten/
+    Speicherlecks zu vermeiden.
+
+3. Vor- und Nachteile von Zeigern
+    Vorteile:
+        - Dynamisches Anlegen von Objekten zur Laufzeit
+        - Schnellen Zugriff auf Daten
+        - Direkte Manipulation von Speicheradressen
+        - Änderung von Werte außerhalb einer Funktion (Call-by-Reference)
+
+    Nachteile:
+        - Speicherleaks
+        - Ungewolle Änderung im Speicher durch Pointer-Arithmetik
+        - Komplexität
+
+4. Konstante Zeiger vs. Zeiger auf Konstanten
+    Konstante Zeiger: Zeiger zeigt nur auf eine Adresse (final), Wert kann sich an ADresse ändern
+        int x = 5;
+        int* const ptr = &x;  // ptr ist konstant, zeigt immer auf x
+        *ptr = 10;            // Erlaubt, den Wert von x zu ändern
+        // ptr = &y;           // Fehler: ptr kann nicht auf eine andere Adresse zeigen
+
+    Zeiger auf Konstanten: Wert bleibt gleich (final), Zeiger kann aber auf andere Adresse verändert werden
+        const int x = 5;
+        const int* ptr = &x;  // Der Wert von x kann nicht geändert werden
+        ptr = &y;             // ptr kann auf eine andere Adresse zeigen
+        // *ptr = 10;          // Fehler: ptr zeigt auf eine Konstante
+
+5. Verwendung von Smart Pointern statt Raw Pointern
+    Smart Pointern: Automatische Speicherfreigabe => Verhindern von Leaks
+
+    unique_ptr: 
+        std::unique_ptr<int> ptr = std::make_unique<int>(10);
+        cout << *ptr << endl;  // Gibt den Wert 10 aus
+        // Kein manuelles delete erforderlich
+
+    shared_ptr:
+        std::shared_ptr<int> ptr1 = std::make_shared<int>(20);
+        std::shared_ptr<int> ptr2 = ptr1;  // ptr2 teilt sich den Besitz mit ptr1
+        cout << *ptr1 << endl;  // Gibt den Wert 20 aus
+
+    weak_ptr: Genutzt mit shared_ptr um zyklische Referenzen zu vermeiden
+
+0x07 Comprehension Check
+
+Ich kenne ’operator overloading’ und kann unäre und binäre Operatoren überladen.
+Ich kann erklären, warum manche Operatoren Member sind und manche nicht.
+Ich kenne Designregeln, die zu beachten sind, wenn man Operatoren überlädt.
+Ich weiß, was 'friend' bedeutet.
+Ich kenne die unterschiedlichen Bedeutungen von 'static'.
+
+1. Operator Overloading (Operatorüberladung)
+    - Operatoren für benutzerdefinierte Datentypen überladen => benutzerfreundliche Syntax
+
+    Unäre Operatorüberladung:
+        class Counter {
+        public:
+            int value;
+
+            Counter(int v) : value(v) {}
+
+            // Prä-Inkrement => neu erhöhten Wert gleich benötigt
+            Counter& operator++() {
+                ++value;  // Zuerst erhöhen
+                return *this;
+            }
+
+            // Post-Inkrement => Arbeiten mit dem alten Wert noch nötig
+            Counter operator++(int) {
+                Counter temp = *this;  // Temporäre Kopie erstellen
+                value++;  // Zuerst den Wert erhöhen
+                return temp;  // Gebe die ursprüngliche (vor der Erhöhung) Kopie zurück
+            }
+        };
+
+    Binäre Operatorüberladung:
+        class Point {
+        public:
+            int x, y;
+
+            Point(int a, int b) : x(a), y(b) {}
+
+            // Binäre Operatorüberladung (Addition von zwei Punkten)
+            Point operator+(const Point& other) {
+                return Point(x + other.x, y + other.y);
+            }
+        };
+
+        class MyClass {
+        public:
+            int value;
+
+            MyClass(int v) : value(v) {}
+
+            bool operator==(const MyClass& other) {
+                return value == other.value;
+            }
+        };
+
+2. Operatoren: Member oder Freundsfunktion
+    Operator als Member: Veränderung innerhalb der Klasse
+        class MyClass {
+        public:
+            int value;
+
+            MyClass(int v) : value(v) {}
+
+            // Operator als Member
+            MyClass operator+(const MyClass& other) {
+                return MyClass(value + other.value);
+            }
+        };
+
+    Operator als Freundesfunktion: Veränderung zwischen Klassen
+        class MyClass {
+        public:
+            int value;
+
+            MyClass(int v) : value(v) {}
+
+            // Operator als Freundsfunktion (Nicht-Member)
+            friend MyClass operator+(const MyClass& a, const MyClass& b);
+        };
+
+        MyClass operator+(const MyClass& a, const MyClass& b) {
+            return MyClass(a.value + b.value);
+        }
+
+3. Designregeln für das Überladen von Operatoren
+    - Überladen nur wenn es die Lesbarkeit verbessert
+    - Symmetrie (wenn schon "!=" dann auch gefälligst "==")
+
+4. friend-Schlüsselwort
+    - Zugriff auf private Member einer anderen Klasse
+    - friend-Funktion nicht in Klasse implementiert
+    
+    class MyClass {
+    private:
+        int value;
+    public:
+        MyClass(int v) : value(v) {}
+
+        // Überladen des Operators als Freundsfunktion
+        friend MyClass operator+(const MyClass& a, const MyClass& b);
+    };
+
+    MyClass operator+(const MyClass& a, const MyClass& b) {
+        return MyClass(a.value + b.value);
+    }
+
+5. Bedeutung von static
+    Lokale Variablen: Variable behält Wert zwischen Funktionsaufrufen
+        void counter() {
+            static int count = 0;
+            count++;
+            std::cout << "Count: " << count << std::endl;
+        } // Wert bei dem zweiten AUfruf ist 1 und nicht 0
+
+    Klassen: Member gilt für alle Instanzen von Klasse
+        class MyClass {
+        public:
+            static int count;  // Statische Variable
+        };
+
+        int MyClass::count = 0;  // Initialisierung außerhalb der Klasse
+
+    Funktion: Sichtbarkeit nur innerhalb der Datei
+        static void helper() {
+            std::cout << "Helferfunktion" << std::endl;
+        }
+
+0x08 Comprehension Check
+
+Ich kenne ’virtual’ und den Unterschied zwischen C++ und Java diesbezüglich.
+Ich kann erklären, warum es keine Interfaces in C++ gibt.
+Ich weiß, was eine abstrakte Klasse ist.
+Ich habe das Thema Mehrfachvererbung in C++ verstanden.
+
+1. virtual und der Unterschied zu Java
+    - Einsatzfall: Überschreibung einer Methode in abgeleitete Klasse => Methode als virtual in Basisklasse
+    - Ermöglicht polymorphes Verhalten einer Funktion
+    - Virtuelle Funktion wird zur Laufzeit dynamisch aufgerufen
+    - Vs Java: alle nicht-final Methoden default virtual
+
+    Beispiel:
+        class Base {
+        public:
+            virtual void show() {  // virtuelle Methode
+                std::cout << "Base" << std::endl;
+            }
+        };
+
+        class Derived : public Base {
+        public:
+            void show() override {  // Überschreiben der virtuellen Methode
+                std::cout << "Derived" << std::endl;
+            }
+        };
+
+        int main() {
+            Base* basePtr = new Derived();
+            basePtr->show();  // Gibt "Derived" aus, da der tatsächliche Typ zur Laufzeit bestimmt wird.
+            delete basePtr;
+        }
+
+2. Nichtexistene Interfaces in C++
+    - Abstrakte Klassen übernehmen die Aufgabe des Interfaces von Java, sind aber auch als "normale" abstrakte Klassen möglich
+
+    Beispiel:
+        class IShape {
+        public:
+            virtual void draw() = 0;  // Pure virtuelle Methode (Interface-ähnlich)
+            virtual ~IShape() = default; // Virtueller Destruktor
+        };
+
+        class Circle : public IShape {
+        public:
+            void draw() override {
+                std::cout << "Drawing Circle" << std::endl;
+            }
+        };
+
+3. Abstrakte Klassen
+    - Def.: mind. eine rein virtuelle Methode
+    - Keine Instanzen, nur für Vererbung da
+
+    Beispiel:
+        class Animal {
+        public:
+            virtual void sound() = 0;  // Pure virtuelle Methode, macht die Klasse abstrakt
+            virtual ~Animal() = default;  // Virtueller Destruktor
+        };
+
+        class Dog : public Animal {
+        public:
+            void sound() override {  // Implementierung der abstrakten Methode
+                std::cout << "Bark!" << std::endl;
+            }
+        };
+
+4. Mehrfachvererbung in C++
+    - Klasse kann von mehr als eine KLasse vererben
+    - Problemo: Diamantvererbung => Schwierigkeiten wegen Ctor/Dtor von Basisklasse 
+
+    Beispiel:
+        class Base1 {
+        public:
+            void show() {
+                std::cout << "Base1" << std::endl;
+            }
+        };
+
+        class Base2 {
+        public:
+            void show() {
+                std::cout << "Base2" << std::endl;
+            }
+        };
+
+        class Derived : public Base1, public Base2 {
+        public:
+            void show() {
+                // Um Ambiguität zu vermeiden, muss entschieden werden, welche Methode verwendet werden soll
+                Base1::show();  // Ruft die Methode von Base1 auf
+            }
+        };
+
+0x09 Comprehension Check
+
+Ich habe das Thema Template-Spezialisierung in C++ verstanden.
+Ich weiß, welche Smart-Ptr. es gibt. => siehe 0x06(5)
+
+1. Template-Spezialisierung in C++
+    - Spezialisierte Version der Funktion/Klassen für bestimmten Datentypen
+
+    Funktion:
+        // Allgemeine Template-Funktion
+        template <typename T>
+        T add(T a, T b) {
+            return a + b;
+        }
+
+        // Spezialisierung für den Typ int
+        template <>
+        int add<int>(int a, int b) {
+            std::cout << "Spezialisierte Version für int" << std::endl;
+            return a + b;
+        }
+
+        int main() {
+            std::cout << add(1, 2) << std::endl; // Aufruf der spezialisierten Version für int
+            std::cout << add(3.5, 4.5) << std::endl; // Aufruf der allgemeinen Version
+        }
+
+    Klasse:
+        template <typename T>
+        class Box {
+        public:
+            T value;
+            Box(T v) : value(v) {}
+            T getValue() { return value; }
+        };
+
+        // Spezialisierung für den Typ char
+        template <>
+        class Box<char> {
+        public:
+            char value;
+            Box(char v) : value(v) {}
+            char getValue() { return value; }
+            void display() { std::cout << "Char: " << value << std::endl; }
+        };
+
+        int main() {
+            Box<int> intBox(10);
+            Box<char> charBox('A');
+            
+            std::cout << intBox.getValue() << std::endl;
+            charBox.display();
+        }
+
+
+0x0a Comprehension Check
+
+Ich kann Lambdas verwenden.
+Ich weiß, wozu die [] da sind.
+Ich kann Funktionen als Parameter nutzen.
+Ich weiß, was ein Funktionszeiger ist.
+Ich kenne 'function'.
+
+1. Lambdas in C++
+    Synax: [ captures ] ( parameters ) -> return_type { body }
+
+    Beispiele:
+        //Einfaches Lambda
+        auto add = [](int a, int b) { return a + b; };
+        std::cout << add(2, 3);  // Ausgabe: 5
+
+        // Mit captures
+        int x = 10;
+        auto print_x = [&]() { std::cout << x << std::endl; };  // Captures x by reference
+        print_x();  // Ausgabe: 10
+
+        // Mit Rückgabewert:
+        auto multiply = [](int a, int b) -> int { return a * b; };
+        std::cout << multiply(3, 4);  // Ausgabe: 12
+
+2. Die Bedeutung von [] in Lambdas
+    Capture-Liste []
+        []: Keine Variablen werden gefangen.
+        [&]: Alle Variablen werden by reference gefangen.
+        [=]: Alle Variablen werden by value gefangen.
+        [this]: Der this Zeiger wird in das Lambda eingefangen (wichtig bei Memberfunktionen).
+        [x, &y]: Die Variable x wird by value und y wird by reference gefangen.
+
+    Beispiel:
+        int x = 10, y = 20;
+        auto lambda = [x, &y]() { 
+            std::cout << "x: " << x << ", y: " << y << std::endl; 
+        };
+        lambda();  // Ausgabe: x: 10, y: 20
+        y = 30;
+        lambda();  // Ausgabe: x: 10, y: 30 (y wurde geändert)
+
+3. Funktionen als Parameter
+    Beispiele:
+        // Funktionszeiger
+        void apply_function(int x, int (*func)(int)) {
+            std::cout << "Result: " << func(x) << std::endl;
+        }
+
+        int square(int x) {
+            return x * x;
+        }
+
+        int main() {
+            apply_function(5, square);  // Ausgabe: Result: 25
+        }
+
+        // Lambda
+        void apply_lambda(int x, const std::function<int(int)>& func) {
+            std::cout << "Result: " << func(x) << std::endl;
+        }
+
+        int main() {
+            apply_lambda(5, [](int n) { return n * 2; });  // Ausgabe: Result: 10
+        }
+
+4. Funktionszeiger
+    Syntax: return_type (*pointer_name)(parameter_types);
+
+    Beispiel:
+        // Funktionszeiger deklarieren
+        int (*func_ptr)(int, int) = add;
+
+        int add(int a, int b) {
+            return a + b;
+        }
+
+        int main() {
+            std::cout << func_ptr(3, 4);  // Ausgabe: 7
+        }
+
+5. std::function
+    - Funktion als Typ Objekt
+
+    Beispiel:
+        #include <functional>
+        #include <iostream>
+
+        std::function<int(int, int)> func;
+
+        int add(int a, int b) {
+            return a + b;
+        }
+
+        int main() {
+            func = add;  // Funktionszeiger
+            std::cout << func(3, 4);  // Ausgabe: 7
+
+            func = [](int a, int b) { return a * b; };  // Lambda
+            std::cout << func(3, 4);  // Ausgabe: 12
+        }
+
+0x0b Comprehension Check
+
+Ich kann Threads erzeugen und laufen lassen.
+Ich weiß, wozu ein Mutex gut ist, kenne locks und kann sie verwenden.
+
+1. Threads in C++
+    - std::thread t(func)
+
+    Beispiel:
+        #include <iostream>
+        #include <thread>
+
+        void print_message() {
+            std::cout << "Hello from the thread!" << std::endl;
+        }
+
+        int main() {
+            std::thread t(print_message);  // Thread erstellen und starten
+            t.join();  // Warten, bis der Thread fertig ist
+            return 0;
+        }
+
+2. Mutex (Mutual Exclusion) und Locks in C++
+    - Verhindert gleichzeitigen Zugriff auf gemeinsamen Ressourcen
+    - lock(): Sperrt den Mutex, sodass nur der aufrufende Thread Zugriff auf die kritische Ressource hat
+    - unlock(): Gibt den Mutex wieder frei, sodass andere Threads darauf zugreifen können.
+
+    Beispiel:
+        #include <iostream>
+        #include <thread>
+        #include <mutex>
+
+        std::mutex mtx;  // Mutex für den Schutz der gemeinsamen Ressource
+        int shared_variable = 0;
+
+        void increment() {
+            mtx.lock();  // Sperrt den Mutex
+            shared_variable++;  // Kritische Ressource
+            mtx.unlock();  // Gibt den Mutex frei
+        }
+
+        int main() {
+            std::thread t1(increment);
+            std::thread t2(increment);
+
+            t1.join();
+            t2.join();
+
+            std::cout << "Shared variable: " << shared_variable << std::endl;  // Ausgabe: 2
+            return 0;
+        }
