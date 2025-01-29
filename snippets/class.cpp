@@ -33,17 +33,18 @@ public:
 // Derived class
 class Derived : public Base {
 public:
-    // Additional data member
+    // Additional data members
     std::string stringValue;
+    std::array<int, 5> intArray;
 
     // Default constructor
-    Derived() : Base(), stringValue("") {
+    Derived() : Base(), stringValue(""), intArray({0, 0, 0, 0, 0}) {
         std::cout << "Derived constructor called\n";
     }
 
     // Parameterized constructor
-    Derived(int intVal, double doubleVal, const std::string& strVal)
-        : Base(intVal, doubleVal), stringValue(strVal) {
+    Derived(int intVal, double doubleVal, const std::string& strVal, const std::array<int, 5>& arrVal)
+        : Base(intVal, doubleVal), stringValue(strVal), intArray(arrVal) {
         std::cout << "Derived parameterized constructor called\n";
     }
 
@@ -56,13 +57,21 @@ public:
     void display() const override {
         Base::display(); // Calling base class display
         std::cout << "stringValue: " << stringValue << std::endl;
+        std::cout << "intArray: ";
+        for (int val : intArray) {
+            std::cout << val << " ";
+        }
+        std::cout << std::endl;
     }
 };
 
 int main() {
     // Creating an object of Derived class using the parameterized constructor
-    Derived d(10, 20.5, "Hello, World!");
-    d.display(); // Display the values of the object
+    std::array<int, 5> arr = {1, 2, 3, 4, 5};
+    Derived d(10, 20.5, "Hello, World!", arr);
+    
+    // Display the values of the object
+    d.display();
 
     return 0;
 }
