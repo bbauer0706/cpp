@@ -33,6 +33,9 @@
 #include <iterator>      // For iterators and iterator utilities
 #include <limits>        // For numerical limits of data types
 #include <memory>        // For smart pointer
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 using namespace std;
 
