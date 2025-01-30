@@ -4,6 +4,33 @@
 
 using namespace std;
 
+/*
+Key Differences in Output:
+Unique Pointer:
+
+Ownership is transferred using std::move() from uniquePtr1 to uniquePtr2, and after the move, uniquePtr1 becomes nullptr. The object is destroyed when uniquePtr2 goes out of scope at the end of uniquePtrExample().
+Shared Pointer:
+
+Both sharedPtr1 and sharedPtr2 share ownership of the same object. The reference count is shown to be 2. The object is only destroyed when the last shared_ptr (either sharedPtr1 or sharedPtr2) goes out of scope.
+Summary of Key Differences:
+Ownership:
+
+unique_ptr: Exclusive ownership (one owner only).
+shared_ptr: Shared ownership (multiple owners possible).
+Memory Management:
+
+unique_ptr: No reference counting, lightweight.
+shared_ptr: Reference counting, heavier due to atomic operations.
+Use Case:
+
+unique_ptr: When you want a single owner, and you want the resource to be deleted as soon as the owner goes out of scope.
+shared_ptr: When multiple owners need to share the resource, and you want it deleted when the last owner goes out of scope.
+In practice:
+
+Use unique_ptr when the ownership of an object is clear and exclusive.
+Use shared_ptr when multiple parts of your program need to share ownership of an object.
+*/
+
 class MyClass {
 public:
     MyClass(int val) : value(val) {

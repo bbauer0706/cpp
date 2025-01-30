@@ -1,6 +1,25 @@
 #include <iostream>
 using namespace std;
 
+/*
+Key Concepts:
+Generic Template Class:
+
+Pair<T> is a class template that can work with any data type (int, double, etc.).
+The member functions of the class are defined in terms of the template type T, making the class flexible and reusable.
+Template Specialization:
+
+template <> class Pair<char> is a specialization of the template class Pair for the char type. This version has a customized display() method for char pairs.
+Specializing a template class allows you to provide specific functionality for certain types while keeping the general functionality for other types.
+Instantiation:
+
+When we instantiate Pair<int>, Pair<double>, or Pair<char>, the appropriate version of the template class is used.
+Summary:
+Template classes in C++ allow you to define classes that can operate on any data type.
+Template specialization allows you to define a specific behavior for certain types, which overrides the generic implementation for those types.
+This approach helps create generic and reusable code, while still allowing custom behavior for specific cases when needed.
+*/
+
 // Template class definition
 template <typename T>
 class Pair {

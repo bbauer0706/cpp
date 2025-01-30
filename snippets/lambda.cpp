@@ -3,6 +3,29 @@
 
 using namespace std;
 
+/*
+Summary of Key Concepts:
+Lambda Expression:
+
+A way to define anonymous functions inline.
+Syntax: [capture](parameters) -> return_type { body }.
+Lambda Capture List:
+
+Allows lambdas to capture variables from the surrounding scope.
+By value ([=]), by reference ([&]), or specific variables ([a, &b]).
+Function as Parameter:
+
+You can pass functions (including lambdas) as arguments to other functions.
+std::function is commonly used to store functions as first-class objects.
+Function Pointer:
+
+A pointer that holds the address of a function.
+Used to pass functions as arguments or store them in data structures.
+General Functions:
+
+Functions can return other functions (including lambdas), which are treated as first-class citizens in C++.
+*/
+
 void applyFunction(int x, const function<int(int)>& func) {
     cout << "Result: " << func(x) << endl;
 }

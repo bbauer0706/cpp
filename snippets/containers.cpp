@@ -4,6 +4,21 @@
 #include <algorithm>  // For std::sort
 using namespace std;
 
+/*
+Key Points:
+std::vector:
+
+A dynamic array that can resize automatically.
+Provides fast access to elements, but inserting or removing elements from the middle may be slower compared to operations at the end.
+Provides functions like push_back(), pop_back(), insert(), erase(), and others.
+std::unordered_map:
+
+Stores key-value pairs using a hash table.
+Allows fast access to values based on keys, with average O(1) time complexity for lookup, insertion, and deletion.
+Unlike std::map, unordered_map does not maintain elements in any specific order.
+Supports operations like insert(), find(), erase(), and more.
+*/
+
 void demonstrateVector() {
     // Create a vector of integers
     vector<int> vec = {10, 20, 30, 40, 50};

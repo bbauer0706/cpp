@@ -2,6 +2,20 @@
 #include <cstring> // For C-style string functions
 using namespace std;
 
+/*
+Key Points:
+String Literals and Modification:
+
+When using char *str = "Hello, World!";, you are pointing to a string literal, which is usually stored in read-only memory. Attempting to modify it is unsafe.
+If you need to modify the string, you should use a character array (e.g., char mutableStr[] = "Hello, World!";).
+Pointer Arithmetic:
+
+With pointers, you can access characters at specific positions in a C-style string by using pointer arithmetic (str + index).
+Mutable Arrays:
+
+To safely modify strings, you need to store them in mutable arrays, like char str[] = "Hello";, where the contents of the array are not constant.
+*/
+
 void manipulateCString() {
     // Declare a C-style string (character array)
     char str[] = "Hello, World!";
