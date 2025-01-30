@@ -8,7 +8,7 @@ using namespace std;
 Key Differences in Output:
 Unique Pointer:
 
-Ownership is transferred using std::move() from uniquePtr1 to uniquePtr2, and after the move, uniquePtr1 becomes nullptr. The object is destroyed when uniquePtr2 goes out of scope at the end of uniquePtrExample().
+Ownership is transferred using std::move() frozm uniquePtr1 to uniquePtr2, and after the move, uniquePtr1 becomes nullptr. The object is destroyed when uniquePtr2 goes out of scope at the end of uniquePtrExample().
 Shared Pointer:
 
 Both sharedPtr1 and sharedPtr2 share ownership of the same object. The reference count is shown to be 2. The object is only destroyed when the last shared_ptr (either sharedPtr1 or sharedPtr2) goes out of scope.
